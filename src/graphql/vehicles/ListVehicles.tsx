@@ -8,9 +8,10 @@ export type VehicleItem = {
   icons: Pick<Icons, "medium" | "small">;
   level: number;
   type : {
+    name: string;
     icons: Pick<Icons, "default">;
   };
-  nation: Pick<Nation, "icons">;
+  nation: Pick<Nation, "icons" | "name">;
 }
 export type VehicleInfo = VehicleItem & {
   description: string;
@@ -31,11 +32,13 @@ export const GET_LIST_VEHICLES = gql`
       }
       level
       type {
+        name
         icons {
           default
         }
       }
       nation {
+        name
         icons {
           large
         }

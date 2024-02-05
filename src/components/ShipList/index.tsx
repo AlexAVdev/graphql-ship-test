@@ -4,6 +4,8 @@ import { GET_LIST_VEHICLES, VehicleItem } from "../../graphql/vehicles/ListVehic
 import { ShipCard } from "../ShipCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useContext, useMemo } from "react";
+import { MainContext } from "../../App";
 
 const settings = {
   className: "center",
@@ -16,12 +18,41 @@ const settings = {
 };
 
 export const ShipList = () => {
+  const {
+    nationName,
+    type,
+    level,
+  } = useContext(MainContext)
   const { data } = useQuery<{ vehicles: VehicleItem[] }>(GET_LIST_VEHICLES)
+
+  const filterByNation = (vehicles?: VehicleItem[]) => {
+    if (!!nationName) {
+      return vehicles?.filter(vehicle => vehicle?.nation?.name === nationName)
+    }
+    return vehicles
+  }
+  const filterByType = (vehicles?: VehicleItem[]) => {
+    if (!!type) {
+      return vehicles?.filter(vehicle => vehicle?.type?.name === type)
+    }
+    return vehicles
+  }
+  const filterByLevel = (vehicles?: VehicleItem[]) => {
+    if (!!level) {
+      return vehicles?.filter(vehicle => vehicle?.level === level)
+    }
+    return vehicles
+  }
+
+  const filteredVehicles = useMemo(
+    () => filterByNation(filterByType(filterByLevel(data?.vehicles))),
+    [nationName, type, level, data?.vehicles]
+  )
 
   return <div className="slider-container">
     <Slider {...settings}>
       {
-        data?.vehicles?.map(vehicle => (
+        filteredVehicles?.map(vehicle => (
           <ShipCard vehicle={vehicle} />
         ))
       }

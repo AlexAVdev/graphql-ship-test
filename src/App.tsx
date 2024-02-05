@@ -1,33 +1,33 @@
 import { createContext, useState } from 'react';
 import { ShipList } from "./components/ShipList";
 import { VehicleItem } from './graphql/vehicles/ListVehicles';
-import { Nation } from './graphql/nations';
 import { ShipDetails } from './components/ShipDetails';
+import { Filters } from './components/Filters';
 
 export const MainContext = createContext<{
   vehicle?: VehicleItem | null;
-  nation?: Nation | null;
+  nationName?: string | null;
   level?: number | null;
   type?: string | null;
   changeVehicle?: (vehicle: VehicleItem) => void;
-  changeNation?: (nation: Nation) => void;
-  changeLevel?: (level: number) => void;
+  changeNation?: (nation: string) => void;
+  changeLevel?: (level: number | null) => void;
   changeType?: (type: string) => void;
 }>({});
 
 function App() {
   const [vehicle, setVehicle] = useState<VehicleItem | null>(null);
-  const [nation, setNation] = useState<Nation | null>(null);
+  const [nationName, setNationName] = useState<string | null>(null);
   const [level, setLevel] = useState<number | null>(null);
   const [type, setType] = useState<string | null>(null);
 
   const changeVehicle = (item: VehicleItem) => {
     !!setVehicle && setVehicle(item)
   }
-  const changeNation = (item: Nation) => {
-    !!setNation && setNation(item)
+  const changeNation = (item: string) => {
+    !!setNationName && setNationName(item)
   }
-  const changeLevel = (item: number) => {
+  const changeLevel = (item: number | null) => {
     !!setLevel && setLevel(item)
   }
   const changeType = (item: string) => {
@@ -36,7 +36,7 @@ function App() {
 
   const context = {
     vehicle,
-    nation,
+    nationName,
     level,
     type,
     changeVehicle,
@@ -48,6 +48,7 @@ function App() {
   return (
     <MainContext.Provider value={context}>
       <div className="App">
+        <Filters />
         <ShipDetails />
         <ShipList />
       </div>
