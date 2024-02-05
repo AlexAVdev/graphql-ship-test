@@ -1,0 +1,21 @@
+.ShipCard {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+  border: 1px solid;
+  margin-bottom: 8px;
+
+  &__Name {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__Info {
+    display: flex;
+    flex-direction: column;
+  }
+}
