@@ -1,0 +1,10 @@
+.ShipInfo {
+  width: 400px;
+  border: 1px solid;
+  padding: 8px 8px;
+
+  &__Item {
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+}
