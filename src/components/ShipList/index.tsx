@@ -6,15 +6,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useContext, useMemo } from "react";
 import { MainContext } from "../../App";
+import { NextArrow, PrevArrow } from "./arrows";
 
 const settings = {
   className: "center",
   centerPadding: "60px",
+  infinite: false,
   slidesToShow: 7,
   speed: 500,
   rows: 2,
   slidesPerRow: 1,
   slidesToScroll: 7,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />
 };
 
 export const ShipList = () => {

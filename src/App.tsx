@@ -4,6 +4,8 @@ import { VehicleItem } from './graphql/vehicles/ListVehicles';
 import { ShipDetails } from './components/ShipDetails';
 import { Filters } from './components/Filters';
 
+import "./styles.scss"
+
 export const MainContext = createContext<{
   vehicle?: VehicleItem | null;
   nationName?: string | null;
@@ -47,10 +49,21 @@ function App() {
 
   return (
     <MainContext.Provider value={context}>
-      <div className="App">
-        <Filters />
-        <ShipDetails />
-        <ShipList />
+      <div className="App Wrapper">
+        <div className="Header">
+          <Filters />
+        </div>
+        <div className="Main" style={{
+          backgroundImage: `url('${vehicle?.icons.medium}')`,
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          backgroundSize: "100% 100%"
+        }}>
+          <ShipDetails />
+        </div>
+        <div className="ShipList">
+          <ShipList />
+        </div>
       </div>
     </MainContext.Provider>
   );

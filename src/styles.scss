@@ -1,0 +1,24 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-width: 100%;
+}
+
+.Header {
+  height: 10vh;
+}
+
+.Main {
+  position: relative;
+  height: 65vh;
+}
+
+.ShipList {
+  height: 23vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 30px;
+}

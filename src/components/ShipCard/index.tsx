@@ -9,13 +9,15 @@ export const ShipCard = ({
   vehicle: VehicleItem;
 }) => {
   const {
+    vehicle: selectedVehicle,
     changeVehicle,
   } = useContext(MainContext)
 
+  const isActive = selectedVehicle?.id === vehicle.id
   const onCardClick = () =>
     !!changeVehicle && changeVehicle(vehicle)
 
-  return <div className="ShipCard" onClick={onCardClick}>
+  return <div className={`ShipCard ${isActive ? "ShipCard__Active" : ""}`} onClick={onCardClick}>
     <img src={vehicle?.nation?.icons?.large} alt={vehicle?.title} height={60} width={120} />
     <div className="ShipCard__Info">
       <img src={vehicle?.icons?.small} alt={vehicle?.title} height={40} width={120} />

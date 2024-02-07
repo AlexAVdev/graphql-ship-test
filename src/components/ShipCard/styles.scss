@@ -5,6 +5,15 @@
   width: 240px;
   border: 1px solid;
   margin-bottom: 8px;
+  cursor: pointer;
+
+  &__Active {
+    background-color: rgb(186, 189, 186);
+  }
+
+  &:hover {
+    background-color: rgb(186, 189, 186);
+  }
 
   &__Name {
     position: absolute;
